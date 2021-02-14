@@ -6,12 +6,19 @@ export default class DB {
 
     private static async createConnection() {
         if (this.connection === null) {
-            this.connection = await mysql.createConnection({
+            
+            const config = {
                 host: process.env.DB_HOST,
                 user: process.env.DB_USERNAME,
                 password: process.env.DB_PASSWORD,
                 database: process.env.DB_NAME,
-            });
+            };
+
+            try {
+                this.connection = await mysql.createConnection(config);
+            } catch (e) {
+                console.log("Failed to connect database with config ", config);
+            }
         }
     }
 
