@@ -1,13 +1,12 @@
 import express from "express";
 import serverless from "serverless-http";
 import systemRoutes from "./routes/system";
+import { ApiResponse } from "./lib/ApiResponse";
 
 const app = express();
 
 app.get("/", (req, res) => {
-    res.send({
-        message: "Hello from ping cheng"
-    });
+    res.send(ApiResponse.with(null, "Hello from Ping Cheng"));
 });
 
 app.use("/system", systemRoutes)
