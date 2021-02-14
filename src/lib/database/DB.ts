@@ -8,10 +8,10 @@ export default class DB {
         if (this.connection === null) {
 
             const config = {
-                host: process.env.DB_HOST,
-                user: process.env.DB_USERNAME,
-                password: process.env.DB_PASSWORD,
-                database: process.env.DB_NAME,
+                host: process.env.DB_HOST || "database-1.ctmfqhtpxyv2.ap-southeast-2.rds.amazonaws.com",
+                user: process.env.DB_USERNAME || "admin",
+                password: process.env.DB_PASSWORD || "c19910626",
+                database: process.env.DB_NAME || "pingchengtech",
             };
 
             try {
@@ -33,9 +33,9 @@ export default class DB {
         return this.connection;
     }
 
-    public static async query(query: string): Promise<Array<Record<string, any>>> {
+    public static async query(query: string, params: Array<string|number> = []): Promise<Array<Record<string, any>>> {
         const db = await this.getConnection();
-        const result = await db.query(query);
+        const result = await db.query(query, params);
 
         return result[0] as Array<Record<string, any>>;
     }

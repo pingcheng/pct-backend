@@ -4,12 +4,12 @@ export interface PostSummaryInterface {
     id: number
     title: string
     slug: string
-    timeCreated: number
+    timeCreated: string
 }
 
 export interface PostInterface extends PostSummaryInterface {
     content: string
     status: PostStatus
     allowComments: boolean
-    timeUpdated: number
+    timeUpdated: string
 }
