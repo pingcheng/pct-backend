@@ -6,6 +6,15 @@ provider:
   stage: ${env:DEPLOYMENT_STAGE}
   region: ap-southeast-2
 
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
 functions:
   app:
     handler: src/index.handler
