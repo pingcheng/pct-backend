@@ -14,6 +14,12 @@ jobs:
         with:
           node-version: 12
 
+      - name: Install yarn
+        run: npm install -g yarn
+
+      - name: Install the dependencies
+        run: yarn install
+
       - name: serverless deploy
         uses: serverless/github-action@master
         with:
