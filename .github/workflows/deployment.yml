@@ -21,4 +21,4 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          DEPLOYMENT_STAGE: ${{ secret.DEPLOYMENT_STAGE }}
+          DEPLOYMENT_STAGE: ${{ secrets.DEPLOYMENT_STAGE }}
