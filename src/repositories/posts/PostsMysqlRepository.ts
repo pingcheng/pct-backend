@@ -1,11 +1,11 @@
 import { PostsRepository } from "./PostsRepository";
 import { PostSummaryInterface } from "../../models/posts/PostInterface";
 import DB from "../../lib/database/DB";
-import { PaginatedResponse } from "../../lib/responses/PaginatedResponse";
+import { PaginatedResponse, PaginatedResponseObject } from "../../lib/responses/PaginatedResponse";
 
 export class PostsMysqlRepository implements PostsRepository {
 
-    async listPosts(perPage: number = 5, page: number = 1): Promise<PaginatedResponse<PostSummaryInterface>> {
+    async listPosts(perPage: number = 5, page: number = 1): Promise<PaginatedResponseObject<PostSummaryInterface>> {
 
         // get posts
         const rows = await DB.query("SELECT * FROM posts LIMIT ? OFFSET ?", [
@@ -30,7 +30,7 @@ export class PostsMysqlRepository implements PostsRepository {
             totalItems: total[0].total,
             perPage: perPage,
             currentPage: page
-        });
+        }).toObject();
     }
 
 }
