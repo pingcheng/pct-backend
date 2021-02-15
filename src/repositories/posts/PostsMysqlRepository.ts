@@ -10,7 +10,6 @@ export class PostsMysqlRepository implements PostsRepository {
 
         const perPage = options.perPage || 5;
         const page = options.page || 1;
-        // const tag = options.tag;
         const categoryId = options.categoryId;
 
         // get posts

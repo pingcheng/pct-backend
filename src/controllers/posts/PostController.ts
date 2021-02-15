@@ -7,8 +7,20 @@ export class PostController {
 
         // Get the page
         const page = Math.max(parseInt(request.query.page as string), 1);
-        const tag = request.query.hasOwnProperty("tag") ? String(request.query.tag) : null;
+        const tag = request.query.hasOwnProperty("tag") ? String(request.query.tag).trim() : null;
         const categoryId = request.query.hasOwnProperty("categoryId") ? Number(request.query.categoryId) : null;
+
+        // Check the category ID.
+        if (categoryId !== null && (!Number.isInteger(categoryId) || categoryId < 1)) {
+            response.status(400).send(ApiResponse.with(null, "Category ID must an positive integer"));
+            return;
+        }
+
+        // Check the tag.
+        if (tag === "") {
+            response.status(400).send(ApiResponse.with(null, "Tag cannot be empty"));
+            return;
+        }
 
         response.send(ApiResponse.with(await Repository.getPostRepository().listPosts({
             page,
