@@ -56,7 +56,7 @@ export class PostController {
                 name: category.name
             },
             tags: tags,
-            timeCreated: post.timeUpdated,
+            timeCreated: post.timeCreated,
         }));
     }
 }
