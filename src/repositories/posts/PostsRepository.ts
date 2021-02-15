@@ -9,10 +9,9 @@ export interface PostsRepository {
     /**
      * List paginated posts.
      *
-     * @param perPage
-     * @param page
+     * @param options
      */
-    listPosts(perPage: number, page: number): Promise<PaginatedResponseObject<PostSummaryInterface>>
+    listPosts(options?: ListPostOptions): Promise<PaginatedResponseObject<PostSummaryInterface>>
 
     /**
      * Get a post by its slug.
@@ -21,4 +20,11 @@ export interface PostsRepository {
      */
     getPostBySlug(slug: string): Promise<PostInterface>;
     
+}
+
+export interface ListPostOptions {
+    perPage?: number,
+    page?: number,
+    tag?: string,
+    categoryId?: number,
 }

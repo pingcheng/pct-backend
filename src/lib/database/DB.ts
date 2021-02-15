@@ -16,6 +16,7 @@ export default class DB {
 
             try {
                 this.connection = await mysql.createConnection(config);
+                this.connection.config.namedPlaceholders = true;
             } catch (e) {
                 console.log("Failed to connect database with config ", config);
             }
@@ -33,7 +34,7 @@ export default class DB {
         return this.connection;
     }
 
-    public static async query(query: string, params: Array<string|number> = []): Promise<Array<Record<string, any>>> {
+    public static async query(query: string, params: Array<string|number>|Record<string, any> = []): Promise<Array<Record<string, any>>> {
         const db = await this.getConnection();
         const result = await db.query(query, params);
 

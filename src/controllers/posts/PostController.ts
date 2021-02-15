@@ -4,13 +4,17 @@ import { ApiResponse } from "../../lib/ApiResponse";
 
 export class PostController {
     public static async list(request: Request, response: Response): Promise<void> {
-        let page = parseInt(request.query.page as string);
 
-        if (!page || page < 1) {
-            page = 1;
-        }
+        // Get the page
+        const page = Math.max(parseInt(request.query.page as string), 1);
+        const tag = request.query.hasOwnProperty("tag") ? String(request.query.tag) : null;
+        const categoryId = request.query.hasOwnProperty("categoryId") ? Number(request.query.categoryId) : null;
 
-        response.send(ApiResponse.with(await Repository.getPostRepository().listPosts(5, page)));
+        response.send(ApiResponse.with(await Repository.getPostRepository().listPosts({
+            page,
+            tag,
+            categoryId
+        })));
     }
 
     public static async getPostBySlug(request: Request, response: Response): Promise<void> {

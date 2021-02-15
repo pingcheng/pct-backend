@@ -6,7 +6,12 @@ import { PostStatus } from "../../models/posts/PostStatus";
 
 export class PostsMysqlRepository implements PostsRepository {
 
-    async listPosts(perPage: number = 5, page: number = 1): Promise<PaginatedResponseObject<PostSummaryInterface>> {
+    async listPosts(options): Promise<PaginatedResponseObject<PostSummaryInterface>> {
+
+        const perPage = options.perPage || 5;
+        const page = options.page || 1;
+        // const tag = options.tag;
+        const categoryId = options.categoryId;
 
         // get posts
         const rows = await DB.query(`
@@ -15,14 +20,24 @@ export class PostsMysqlRepository implements PostsRepository {
                    slug,
                    created_at
             FROM posts
-            LIMIT ? OFFSET ?
-        `, [
-            perPage,
-            (page - 1) * perPage
-        ]);
+            WHERE 1=1
+            ${categoryId !== null ? "AND category = :categoryId" : ""}
+            LIMIT :limit OFFSET :offset
+        `, {
+            limit: perPage,
+            offset: (page - 1) * perPage,
+            categoryId: categoryId
+        });
         const posts: PostSummaryInterface[] = [];
 
-        const total = await DB.query("SELECT COUNT(1) AS total from posts");
+        const total = await DB.query(`
+            SELECT COUNT(1) AS total
+            FROM posts
+            WHERE 1=1
+            ${categoryId !== null ? "AND category = :categoryId" : ""}
+        `, {
+            categoryId: categoryId
+        });
 
         for (let row of rows) {
             posts.push({
