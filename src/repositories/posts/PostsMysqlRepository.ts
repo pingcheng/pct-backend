@@ -1,7 +1,8 @@
 import { PostsRepository } from "./PostsRepository";
-import { PostSummaryInterface } from "../../models/posts/PostInterface";
+import { PostInterface, PostSummaryInterface } from "../../models/posts/PostInterface";
 import DB from "../../lib/database/DB";
 import { PaginatedResponse, PaginatedResponseObject } from "../../lib/responses/PaginatedResponse";
+import { PostStatus } from "../../models/posts/PostStatus";
 
 export class PostsMysqlRepository implements PostsRepository {
 
@@ -38,6 +39,42 @@ export class PostsMysqlRepository implements PostsRepository {
             perPage: perPage,
             currentPage: page
         });
+    }
+
+    async getPostBySlug(slug: string): Promise<PostInterface> {
+        // get post data
+        const posts = await DB.query(`
+            SELECT id,
+                   title,
+                   content,
+                   status,
+                   slug,
+                   created_at,
+                   updated_at
+            FROM posts
+            WHERE slug = ?
+            AND status = ?
+        `, [
+            slug,
+            PostStatus.PUBLISHED
+        ]);
+
+        if (posts.length === 0) {
+            return null;
+        }
+
+        const post = posts[0];
+
+        return {
+            id: post.id,
+            title: post.title,
+            slug: post.slug,
+            content: post.content,
+            status: post.status,
+            allowComments: false,
+            timeCreated: post.created_at,
+            timeUpdated: post.updated_at
+        }
     }
 
 }
