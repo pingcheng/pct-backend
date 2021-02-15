@@ -19,10 +19,12 @@ export class PostsMysqlRepository implements PostsRepository {
                    slug,
                    created_at
             FROM posts
-            WHERE 1=1
-            ${categoryId !== null ? "AND category = :categoryId" : ""}
+            WHERE status = :status
+            ${categoryId !== null ? "AND category = :categoryId" : ""} 
+            ORDER BY id DESC
             LIMIT :limit OFFSET :offset
         `, {
+            status: PostStatus.PUBLISHED,
             limit: perPage,
             offset: (page - 1) * perPage,
             categoryId: categoryId
@@ -32,9 +34,10 @@ export class PostsMysqlRepository implements PostsRepository {
         const total = await DB.query(`
             SELECT COUNT(1) AS total
             FROM posts
-            WHERE 1=1
+            WHERE status = :status
             ${categoryId !== null ? "AND category = :categoryId" : ""}
         `, {
+            status: PostStatus.PUBLISHED,
             categoryId: categoryId
         });
 
