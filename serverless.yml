@@ -24,5 +24,30 @@ functions:
   app:
     handler: src/index.handler
     events:
-      - http: ANY /
-      - http: "ANY {proxy+}"
+      - http:
+          path: /
+          method: ANY
+          origins:
+            - http://*.pingchengtech.com
+          headers:
+            - Content-Type
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: false
+
+      - http:
+          path: "{proxy+}"
+          method: ANY
+          origins:
+            - http://*.pingchengtech.com
+          headers:
+            - Content-Type
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: false
