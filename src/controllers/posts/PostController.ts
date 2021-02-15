@@ -25,10 +25,22 @@ export class PostController {
         // Only get tags' name.
         const tags = (await Repository.getPostTagsRepository().getTagsByPostId(post.id)).map(tag => tag.tag);
 
-        // Combine the post and tags.
+        // Get category.
+        const category = await Repository.getPostCategoriesRepository().getById(post.categoryId);
+
+        // Return the content.
         response.send(ApiResponse.with({
-            ...post,
-            tags: tags
+            id: post.id,
+            slug: post.slug,
+            title: post.title,
+            content: post.content,
+            status: post.status,
+            category: {
+                id: category.id,
+                name: category.name
+            },
+            tags: tags,
+            timeCreated: post.timeUpdated,
         }));
     }
 }

@@ -45,6 +45,7 @@ export class PostsMysqlRepository implements PostsRepository {
         // get post data
         const posts = await DB.query(`
             SELECT id,
+                   category as category_id,
                    title,
                    content,
                    status,
@@ -68,6 +69,7 @@ export class PostsMysqlRepository implements PostsRepository {
 
         return {
             id: post.id,
+            categoryId: post.category_id,
             title: post.title,
             slug: post.slug,
             content: post.content,

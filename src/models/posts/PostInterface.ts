@@ -8,6 +8,7 @@ export interface PostSummaryInterface {
 }
 
 export interface PostInterface extends PostSummaryInterface {
+    categoryId: number
     content: string
     status: PostStatus
     allowComments: boolean

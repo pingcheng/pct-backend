@@ -2,6 +2,8 @@ import { PostsRepository } from "./posts/PostsRepository";
 import { PostsMysqlRepository } from "./posts/PostsMysqlRepository";
 import { PostTagsRepository } from "./posts/tags/PostTagsRepository";
 import { PostTagsMysqlRepository } from "./posts/tags/PostTagsMysqlRepository";
+import { PostCategoriesRepository } from "./posts/categories/PostCategoriesRepository";
+import { PostCategoriesMysqlRepository } from "./posts/categories/PostCategoriesMysqlRepository";
 
 export class Repository {
 
@@ -17,6 +19,12 @@ export class Repository {
         return this.getRepository("postTags", () => {
             return new PostTagsMysqlRepository();
         });
+    }
+
+    public static getPostCategoriesRepository(): PostCategoriesRepository {
+        return this.getRepository("postCategories", () => {
+            return new PostCategoriesMysqlRepository();
+        })
     }
 
     private static getRepository(name: string, runner: Function) {
