@@ -8,7 +8,14 @@ export class PostsMysqlRepository implements PostsRepository {
     async listPosts(perPage: number = 5, page: number = 1): Promise<PaginatedResponseObject<PostSummaryInterface>> {
 
         // get posts
-        const rows = await DB.query("SELECT * FROM posts LIMIT ? OFFSET ?", [
+        const rows = await DB.query(`
+            SELECT id,
+                   title,
+                   slug,
+                   created_at
+            FROM posts
+            LIMIT ? OFFSET ?
+        `, [
             perPage,
             (page - 1) * perPage
         ]);
