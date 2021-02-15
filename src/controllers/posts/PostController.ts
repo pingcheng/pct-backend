@@ -1,18 +1,16 @@
 import { Request, Response } from "express";
 import { Repository } from "../../repositories/Repository";
-import { PaginatedResponseObject } from "../../lib/responses/PaginatedResponse";
-import { PostSummaryInterface } from "../../models/posts/PostInterface";
 import { ApiResponse } from "../../lib/ApiResponse";
 
 export class PostController {
-    public static async list(request: Request): Promise<PaginatedResponseObject<PostSummaryInterface>> {
+    public static async list(request: Request, response: Response): Promise<void> {
         let page = parseInt(request.query.page as string);
 
         if (!page || page < 1) {
             page = 1;
         }
 
-        return await Repository.getPostRepository().listPosts(5, page);
+        response.send(ApiResponse.with(await Repository.getPostRepository().listPosts(5, page)));
     }
 
     public static async getPostBySlug(request: Request, response: Response): Promise<void> {
