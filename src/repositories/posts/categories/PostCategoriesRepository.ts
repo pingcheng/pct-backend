@@ -3,6 +3,11 @@ import { PostCategoryInterface } from "../../../models/posts/categories/PostCate
 export interface PostCategoriesRepository {
 
     /**
+     * List all post categories.
+     */
+    list(): Promise<Array<PostCategoryInterface>>;
+
+    /**
      * Get a post category by its ID.
      *
      * @param categoryId
