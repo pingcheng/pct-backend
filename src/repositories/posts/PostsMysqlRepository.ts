@@ -25,12 +25,12 @@ export class PostsMysqlRepository implements PostsRepository {
             });
         }
 
-        return new PaginatedResponse<PostSummaryInterface>({
+        return PaginatedResponse.with({
             items: posts,
             totalItems: total[0].total,
             perPage: perPage,
             currentPage: page
-        }).toObject();
+        });
     }
 
 }

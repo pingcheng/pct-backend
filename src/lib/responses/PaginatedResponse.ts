@@ -5,7 +5,11 @@ export class PaginatedResponse<T> {
     private readonly perPage: number;
     private readonly currentPage: number;
 
-    constructor(config: PaginatedResponseConfig<T>) {
+    public static with(config: PaginatedResponseConfig<any>) {
+        return new PaginatedResponse(config).toObject();
+    }
+
+    private constructor(config: PaginatedResponseConfig<T>) {
         this.items = config.items;
         this.totalItems = config.totalItems;
         this.perPage = config.perPage;
