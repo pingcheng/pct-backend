@@ -59,6 +59,7 @@ export class PostsMysqlRepository implements PostsRepository {
             PostStatus.PUBLISHED
         ]);
 
+        // If no posts found, return null
         if (posts.length === 0) {
             return null;
         }
