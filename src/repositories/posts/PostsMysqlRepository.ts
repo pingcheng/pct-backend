@@ -17,6 +17,7 @@ export class PostsMysqlRepository implements PostsRepository {
             SELECT id,
                    title,
                    slug,
+                   SUBSTRING(content, 1, 500) AS content,
                    created_at
             FROM posts
             WHERE status = :status
@@ -45,6 +46,7 @@ export class PostsMysqlRepository implements PostsRepository {
             posts.push({
                 id: row.id,
                 title: row.title,
+                content: row.content,
                 slug: row.slug,
                 timeCreated: row.created_at
             });
