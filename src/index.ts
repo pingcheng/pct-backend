@@ -1,23 +1,18 @@
 import express from "express";
 import serverless from "serverless-http";
 import systemRoutes from "./routes/system";
-import { ApiResponse } from "./lib/ApiResponse";
 import postsRoutes from "./routes/posts/postsRoutes";
 import postCategoriesRoutes from "./routes/posts/postCategoriesRoutes";
+import { enableCors } from "./routes/cors";
+import rootRoutes from "./routes/root";
 
 const app = express();
 
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "http://new.pingchengtech.com");
-    res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+// Enable the CORS
+app.use(enableCors);
 
-app.get("/", (req, res) => {
-    res.send(ApiResponse.with(null, "Hello from Ping Cheng"));
-});
-
+// Register routes
+app.use("/", rootRoutes);
 app.use("/posts", postsRoutes);
 app.use("/postCategories", postCategoriesRoutes);
 app.use("/system", systemRoutes);
