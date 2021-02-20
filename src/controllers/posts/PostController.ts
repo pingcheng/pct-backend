@@ -23,6 +23,7 @@ export class PostController {
         }
 
         response.send(ApiResponse.with(await Repository.getPostRepository().listPosts({
+            perPage: 3,
             page,
             tag,
             categoryId
