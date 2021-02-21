@@ -6,6 +6,7 @@ import postCategoriesRoutes from "./routes/posts/postCategoriesRoutes";
 import { enableCors } from "./routes/cors";
 import rootRoutes from "./routes/root";
 import dotenv from "dotenv";
+import postTagsRoutes from "./routes/posts/postTagsRoutes";
 
 // Load the env variables.
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(enableCors);
 app.use("/", rootRoutes);
 app.use("/posts", postsRoutes);
 app.use("/postCategories", postCategoriesRoutes);
+app.use("/postTags", postTagsRoutes);
 app.use("/system", systemRoutes);
 
 // Export the handler for serverless lambda.

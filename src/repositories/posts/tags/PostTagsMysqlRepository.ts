@@ -1,5 +1,5 @@
-import { PostTagsRepository } from "./PostTagsRepository";
-import { PostTagInterface } from "../../../models/posts/tags/PostTagInterface";
+import {PostTagsRepository} from "./PostTagsRepository";
+import {PostTagInterface} from "../../../models/posts/tags/PostTagInterface";
 import DB from "../../../lib/database/DB";
 
 export class PostTagsMysqlRepository implements PostTagsRepository {
@@ -28,6 +28,16 @@ export class PostTagsMysqlRepository implements PostTagsRepository {
         });
 
         return tags;
+    }
+
+    async list(): Promise<Array<String>> {
+        const rows = await DB.query(`
+            SELECT DISTINCT tag
+            FROM post_tags
+            LIMIT 150
+        `);
+
+        return rows.map(row => row.tag);
     }
 
 }
