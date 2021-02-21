@@ -13,6 +13,7 @@
     "@types/express": "^4.17.11",
     "@types/mysql": "^2.15.17",
     "aws-lambda": "^1.0.6",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.2.5",

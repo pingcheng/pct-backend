@@ -5,6 +5,10 @@ import postsRoutes from "./routes/posts/postsRoutes";
 import postCategoriesRoutes from "./routes/posts/postCategoriesRoutes";
 import { enableCors } from "./routes/cors";
 import rootRoutes from "./routes/root";
+import dotenv from "dotenv";
+
+// Load the env variables.
+dotenv.config();
 
 // Create a new express app.
 const app = express();

@@ -10,3 +10,6 @@ dist
 # serverless
 .serverless
 .webpack
+
+# local env
+.env
