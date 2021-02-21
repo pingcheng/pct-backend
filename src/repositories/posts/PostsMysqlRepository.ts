@@ -11,35 +11,46 @@ export class PostsMysqlRepository implements PostsRepository {
         const perPage = options.perPage || 5;
         const page = options.page || 1;
         const categoryId = options.categoryId;
+        const tag = options.tag;
 
         // get posts
         const rows = await DB.query(`
-            SELECT id,
-                   title,
-                   slug,
-                   SUBSTRING(content, 1, 500) AS content,
-                   created_at
-            FROM posts
-            WHERE status = :status
-            ${categoryId !== null ? "AND category = :categoryId" : ""} 
-            ORDER BY id DESC
+            SELECT post.id,
+                   post.title,
+                   post.slug,
+                   SUBSTRING(post.content, 1, 500) AS content,
+                   post.created_at
+            FROM posts AS post
+            ${tag !== null
+            ? "JOIN post_tags AS tag ON tag.post_id = post.id"
+            : ""}
+            WHERE post.status = :status
+            ${categoryId !== null ? "AND post.category = :categoryId" : ""}
+            ${tag !== null ? "AND tag.tag = :tag " : ""} 
+            ORDER BY post.id DESC
             LIMIT :limit OFFSET :offset
         `, {
             status: PostStatus.PUBLISHED,
             limit: perPage,
             offset: (page - 1) * perPage,
-            categoryId: categoryId
+            categoryId: categoryId,
+            tag: tag
         });
         const posts: PostSummaryInterface[] = [];
 
         const total = await DB.query(`
             SELECT COUNT(1) AS total
-            FROM posts
-            WHERE status = :status
-            ${categoryId !== null ? "AND category = :categoryId" : ""}
+            FROM posts AS post
+            ${tag !== null
+            ? "JOIN post_tags AS tag ON tag.post_id = post.id"
+            : ""}
+            WHERE post.status = :status
+            ${categoryId !== null ? "AND post.category = :categoryId" : ""}
+            ${tag !== null ? "AND tag.tag = :tag " : ""} 
         `, {
             status: PostStatus.PUBLISHED,
-            categoryId: categoryId
+            categoryId: categoryId,
+            tag: tag
         });
 
         for (let row of rows) {
