@@ -8,10 +8,11 @@ export default class DB {
         if (this.connection === null) {
 
             const config = {
-                host: process.env.DB_HOST || "database-1.ctmfqhtpxyv2.ap-southeast-2.rds.amazonaws.com",
-                user: process.env.DB_USERNAME || "admin",
-                password: process.env.DB_PASSWORD || "c19910626",
-                database: process.env.DB_NAME || "pingchengtech",
+                host: process.env.DB_HOST,
+                port: Number(process.env.DB_PORT) || 3306,
+                user: process.env.DB_USERNAME,
+                password: process.env.DB_PASSWORD,
+                database: process.env.DB_NAME,
             };
 
             try {
