@@ -19,7 +19,13 @@ export default class DB {
                 this.connection = await mysql.createConnection(config);
                 this.connection.config.namedPlaceholders = true;
             } catch (e) {
-                console.log("Failed to connect database with config ", config);
+                console.log("Failed to connect database with config ", {
+                    host: config.host,
+                    port: config.port,
+                    user: config.user,
+                    password: "[HIDDEN]",
+                    database: config.database,
+                });
             }
         }
     }
