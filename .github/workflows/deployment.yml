@@ -32,3 +32,4 @@ jobs:
           DB_NAME: ${{ secrets.DB_NAME }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          CORS_SITE: ${{ secrets.CORS_SITE }}
