@@ -1,8 +1,9 @@
 service: pct-backend
+useDotenv: true
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs14.x
   stage: ${env:DEPLOYMENT_STAGE}
   region: ap-southeast-2
   vpc:
@@ -15,6 +16,8 @@ custom:
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
+  serverless-offline:
+    noPrependStageInUrl: true
 
 plugins:
   - serverless-webpack
@@ -27,27 +30,7 @@ functions:
       - http:
           path: /
           method: ANY
-          origins:
-            - http://*.pingchengtech.com
-          headers:
-            - Content-Type
-            - X-Amz-Date
-            - Authorization
-            - X-Api-Key
-            - X-Amz-Security-Token
-            - X-Amz-User-Agent
-          allowCredentials: false
 
       - http:
           path: "{proxy+}"
           method: ANY
-          origins:
-            - http://*.pingchengtech.com
-          headers:
-            - Content-Type
-            - X-Amz-Date
-            - Authorization
-            - X-Api-Key
-            - X-Amz-Security-Token
-            - X-Amz-User-Agent
-          allowCredentials: false
