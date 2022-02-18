@@ -30,7 +30,11 @@ functions:
       - http:
           path: /
           method: ANY
+          origins:
+            - https://*.pingchengtech.com
 
       - http:
           path: "{proxy+}"
           method: ANY
+          origins:
+            - https://*.pingchengtech.com
