@@ -36,27 +36,9 @@ functions:
       - http:
           path: /
           method: ANY
-          cors:
-            origins:
-              - https://*.pingchengtech.com
-            headers:
-              - Content-Type
-              - X-Amz-Date
-              - Authorization
-              - X-Api-Key
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
+          cors: true
 
       - http:
           path: "{proxy+}"
           method: ANY
-          cors:
-            origins:
-              - https://*.pingchengtech.com
-            headers:
-              - Content-Type
-              - X-Amz-Date
-              - Authorization
-              - X-Api-Key
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
+          cors: true
