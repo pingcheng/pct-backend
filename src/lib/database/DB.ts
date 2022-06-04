@@ -15,6 +15,14 @@ export default class DB {
                 database: process.env.DB_NAME,
             };
 
+            console.log("Try to connect to this database ", {
+                host: config.host,
+                port: config.port,
+                user: config.user,
+                password: "[HIDDEN]",
+                database: config.database,
+            });
+
             try {
                 this.connection = await mysql.createConnection(config);
                 this.connection.config.namedPlaceholders = true;
