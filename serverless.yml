@@ -6,14 +6,7 @@ provider:
   runtime: nodejs14.x
   stage: ${env:DEPLOYMENT_STAGE}
   region: ap-southeast-2
-  vpc:
-    securityGroupIds:
-      - sg-098a329c55b23281c
-      - sg-e66921ac
-    subnetIds:
-      - subnet-2bf58e73
-      - subnet-50a06518
-      - subnet-fb1cd49d
+  memorySize: 128
 
 custom:
   webpack:
