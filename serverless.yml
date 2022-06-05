@@ -27,7 +27,7 @@ functions:
       DB_NAME: ${env:DB_NAME}
       DB_PASSWORD: ${env:DB_PASSWORD}
       DB_USERNAME: ${env:DB_USERNAME}
-      CORS_SITE: ${env:CORS_SITE}
+      CORS_SITE: ${env:CORS_SITE, ""}
     events:
       - http:
           path: /
