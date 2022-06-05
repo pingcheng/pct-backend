@@ -4,7 +4,6 @@ useDotenv: true
 provider:
   name: aws
   runtime: nodejs14.x
-  stage: ${env:DEPLOYMENT_STAGE}
   region: ap-southeast-2
   memorySize: 128
 
