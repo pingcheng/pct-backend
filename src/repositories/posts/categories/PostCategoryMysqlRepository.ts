@@ -1,8 +1,8 @@
-import { PostCategoriesRepository } from "./PostCategoriesRepository";
-import { PostCategoryInterface } from "../../../models/posts/categories/PostCategoryInterface";
-import DB from "../../../lib/database/DB";
+import { PostCategoryRepository } from "src/repositories/posts/categories/PostCategoryRepository";
+import { PostCategoryInterface } from "src/models/posts/categories/PostCategoryInterface";
+import DB from "src/lib/database/DB";
 
-export class PostCategoriesMysqlRepository implements PostCategoriesRepository {
+export class PostCategoryMysqlRepository implements PostCategoryRepository {
 
     async getById(categoryId: number): Promise<PostCategoryInterface> {
 

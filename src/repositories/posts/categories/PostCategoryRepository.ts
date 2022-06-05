@@ -1,6 +1,6 @@
 import { PostCategoryInterface } from "../../../models/posts/categories/PostCategoryInterface";
 
-export interface PostCategoriesRepository {
+export interface PostCategoryRepository {
 
     /**
      * List all post categories.

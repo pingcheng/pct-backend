@@ -2,8 +2,8 @@ import { PostRepository } from "src/repositories/posts/PostRepository";
 import { PostMysqlRepository } from "src/repositories/posts/PostMysqlRepository";
 import { PostTagRepository } from "src/repositories/posts/tags/PostTagRepository";
 import { PostTagMysqlRepository } from "src/repositories/posts/tags/PostTagMysqlRepository";
-import { PostCategoriesRepository } from "./posts/categories/PostCategoriesRepository";
-import { PostCategoriesMysqlRepository } from "./posts/categories/PostCategoriesMysqlRepository";
+import { PostCategoryRepository } from "src/repositories/posts/categories/PostCategoryRepository";
+import { PostCategoryMysqlRepository } from "src/repositories/posts/categories/PostCategoryMysqlRepository";
 
 /**
  * Repository factory.
@@ -33,9 +33,9 @@ export class Repository {
     /**
      * Get the post categories repository.
      */
-    public static getPostCategoriesRepository(): PostCategoriesRepository {
+    public static getPostCategoriesRepository(): PostCategoryRepository {
         return this.getRepository("postCategories", () => {
-            return new PostCategoriesMysqlRepository();
+            return new PostCategoryMysqlRepository();
         })
     }
 
