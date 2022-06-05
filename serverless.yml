@@ -6,6 +6,7 @@ provider:
   runtime: nodejs14.x
   region: ap-southeast-2
   memorySize: 128
+  versionFunctions: false
 
 custom:
   webpack:
