@@ -1,5 +1,5 @@
-import { PostsRepository } from "./posts/PostsRepository";
-import { PostsMysqlRepository } from "./posts/PostsMysqlRepository";
+import { PostRepository } from "src/repositories/posts/PostRepository";
+import { PostMysqlRepository } from "src/repositories/posts/PostMysqlRepository";
 import { PostTagsRepository } from "./posts/tags/PostTagsRepository";
 import { PostTagsMysqlRepository } from "./posts/tags/PostTagsMysqlRepository";
 import { PostCategoriesRepository } from "./posts/categories/PostCategoriesRepository";
@@ -13,11 +13,11 @@ export class Repository {
     private static repos: Record<string, any> = {};
 
     /**
-     * Get the posts repository.
+     * Get the post repository.
      */
-    public static getPostRepository(): PostsRepository {
+    public static getPostRepository(): PostRepository {
         return this.getRepository("posts", () => {
-            return new PostsMysqlRepository();
+            return new PostMysqlRepository();
         });
     }
 

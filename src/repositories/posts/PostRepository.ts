@@ -4,7 +4,7 @@ import { PaginatedResponseObject } from "../../lib/responses/PaginatedResponse";
 /**
  * Posts repository.
  */
-export interface PostsRepository {
+export interface PostRepository {
 
     /**
      * List paginated posts.

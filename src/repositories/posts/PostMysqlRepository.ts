@@ -1,10 +1,10 @@
-import { PostsRepository } from "./PostsRepository";
-import { PostInterface, PostSummaryInterface } from "../../models/posts/PostInterface";
-import DB from "../../lib/database/DB";
-import { PaginatedResponse, PaginatedResponseObject } from "../../lib/responses/PaginatedResponse";
-import { PostStatus } from "../../models/posts/PostStatus";
+import { PostRepository } from "src/repositories/posts/PostRepository";
+import { PostInterface, PostSummaryInterface } from "src/models/posts/PostInterface";
+import DB from "src/lib/database/DB";
+import { PaginatedResponse, PaginatedResponseObject } from "src/lib/responses/PaginatedResponse";
+import { PostStatus } from "src/models/posts/PostStatus";
 
-export class PostsMysqlRepository implements PostsRepository {
+export class PostMysqlRepository implements PostRepository {
 
     async listPosts(options): Promise<PaginatedResponseObject<PostSummaryInterface>> {
 
