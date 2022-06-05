@@ -1,6 +1,6 @@
-import { PostTagInterface } from "../../../models/posts/tags/PostTagInterface";
+import { PostTagInterface } from "src/models/posts/tags/PostTagInterface";
 
-export interface PostTagsRepository {
+export interface PostTagRepository {
 
     /**
      * List all existing post tags.

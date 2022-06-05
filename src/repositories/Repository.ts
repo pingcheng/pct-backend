@@ -1,7 +1,7 @@
 import { PostRepository } from "src/repositories/posts/PostRepository";
 import { PostMysqlRepository } from "src/repositories/posts/PostMysqlRepository";
-import { PostTagsRepository } from "./posts/tags/PostTagsRepository";
-import { PostTagsMysqlRepository } from "./posts/tags/PostTagsMysqlRepository";
+import { PostTagRepository } from "src/repositories/posts/tags/PostTagRepository";
+import { PostTagMysqlRepository } from "src/repositories/posts/tags/PostTagMysqlRepository";
 import { PostCategoriesRepository } from "./posts/categories/PostCategoriesRepository";
 import { PostCategoriesMysqlRepository } from "./posts/categories/PostCategoriesMysqlRepository";
 
@@ -24,9 +24,9 @@ export class Repository {
     /**
      * Get the post tags repository.
      */
-    public static getPostTagsRepository(): PostTagsRepository {
+    public static getPostTagsRepository(): PostTagRepository {
         return this.getRepository("postTags", () => {
-            return new PostTagsMysqlRepository();
+            return new PostTagMysqlRepository();
         });
     }
 

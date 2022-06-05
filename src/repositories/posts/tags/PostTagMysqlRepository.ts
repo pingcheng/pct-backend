@@ -1,8 +1,8 @@
-import {PostTagsRepository} from "./PostTagsRepository";
-import {PostTagInterface} from "../../../models/posts/tags/PostTagInterface";
-import DB from "../../../lib/database/DB";
+import {PostTagRepository} from "src/repositories/posts/tags/PostTagRepository";
+import {PostTagInterface} from "src/models/posts/tags/PostTagInterface";
+import DB from "src/lib/database/DB";
 
-export class PostTagsMysqlRepository implements PostTagsRepository {
+export class PostTagMysqlRepository implements PostTagRepository {
 
     async getTagsByPostId(postId: number): Promise<Array<PostTagInterface>> {
 
