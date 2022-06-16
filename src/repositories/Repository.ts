@@ -1,5 +1,5 @@
-import { PostRepository } from 'src/repositories/posts/PostRepository'
-import { PostMysqlRepository } from 'src/repositories/posts/PostMysqlRepository'
+import { PostRepository } from 'src/repositories/posts/posts/PostRepository'
+import { PostMysqlRepository } from 'src/repositories/posts/posts/PostMysqlRepository'
 import { PostTagRepository } from 'src/repositories/posts/tags/PostTagRepository'
 import { PostTagMysqlRepository } from 'src/repositories/posts/tags/PostTagMysqlRepository'
 import { PostCategoryRepository } from 'src/repositories/posts/categories/PostCategoryRepository'

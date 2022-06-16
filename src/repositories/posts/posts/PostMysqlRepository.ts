@@ -1,4 +1,4 @@
-import { PostRepository } from 'src/repositories/posts/PostRepository'
+import { PostRepository } from 'src/repositories/posts/posts/PostRepository'
 import { PostInterface, PostSummaryInterface } from 'src/models/posts/PostInterface'
 import DB from 'src/lib/database/DB'
 import { PaginatedResponse, PaginatedResponseObject } from 'src/lib/responses/PaginatedResponse'

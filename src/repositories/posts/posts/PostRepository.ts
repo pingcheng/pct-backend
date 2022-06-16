@@ -1,5 +1,5 @@
-import { PostInterface, PostSummaryInterface } from '../../models/posts/PostInterface'
-import { PaginatedResponseObject } from '../../lib/responses/PaginatedResponse'
+import { PostInterface, PostSummaryInterface } from '../../../models/posts/PostInterface'
+import { PaginatedResponseObject } from '../../../lib/responses/PaginatedResponse'
 
 export interface ListPostOptions {
     perPage?: number,
