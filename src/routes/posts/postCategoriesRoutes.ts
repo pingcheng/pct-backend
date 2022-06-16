@@ -1,8 +1,8 @@
-import { Router } from "express";
-import { PostCategoryController } from "../../controllers/posts/PostCategoryController";
+import { Router } from 'express'
+import { PostCategoryController } from '../../controllers/posts/PostCategoryController'
 
-const postCategoriesRoutes = Router();
+const postCategoriesRoutes = Router()
 
-postCategoriesRoutes.get("/", PostCategoryController.list);
+postCategoriesRoutes.get('/', PostCategoryController.list)
 
-export default postCategoriesRoutes;
+export default postCategoriesRoutes

@@ -1,4 +1,4 @@
-import { PostStatus } from "./PostStatus";
+import { PostStatus } from './PostStatus'
 
 export interface PostSummaryInterface {
     id: number

@@ -1,4 +1,4 @@
-import { PostTagInterface } from "src/models/posts/tags/PostTagInterface";
+import { PostTagInterface } from 'src/models/posts/tags/PostTagInterface'
 
 export interface PostTagRepository {
 

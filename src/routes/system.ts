@@ -1,12 +1,12 @@
-import { Router } from "express";
-import { ApiResponse } from "../lib/ApiResponse";
+import { Router } from 'express'
+import { ApiResponse } from '../lib/ApiResponse'
 
-const systemRoutes = Router();
+const systemRoutes = Router()
 
-systemRoutes.get("/", (req, res) => {
-    res.send(ApiResponse.with({
-        "time": Date.now()
-    }));
-});
+systemRoutes.get('/', (req, res) => {
+  res.send(ApiResponse.with({
+    time: Date.now()
+  }))
+})
 
-export default systemRoutes;
+export default systemRoutes

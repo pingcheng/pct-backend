@@ -1,4 +1,4 @@
-import type { AWS } from '@serverless/typescript';
+import type { AWS } from '@serverless/typescript'
 
 const serverlessConfiguration: AWS = {
   service: 'aws-nodejs-typescript',
@@ -15,13 +15,13 @@ const serverlessConfiguration: AWS = {
     runtime: 'nodejs12.x',
     apiGateway: {
       minimumCompressionSize: 1024,
-      shouldStartNameWithService: true,
+      shouldStartNameWithService: true
     },
     environment: {
-      AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
+      AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1'
     },
-    lambdaHashingVersion: '20201221',
-  },
+    lambdaHashingVersion: '20201221'
+  }
 }
 
-module.exports = serverlessConfiguration;
+module.exports = serverlessConfiguration

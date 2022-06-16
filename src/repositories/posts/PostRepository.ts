@@ -1,5 +1,12 @@
-import { PostInterface, PostSummaryInterface } from "../../models/posts/PostInterface";
-import { PaginatedResponseObject } from "../../lib/responses/PaginatedResponse";
+import { PostInterface, PostSummaryInterface } from '../../models/posts/PostInterface'
+import { PaginatedResponseObject } from '../../lib/responses/PaginatedResponse'
+
+export interface ListPostOptions {
+    perPage?: number,
+    page?: number,
+    tag?: string,
+    categoryId?: number,
+}
 
 /**
  * Posts repository.
@@ -19,12 +26,5 @@ export interface PostRepository {
      * @param slug
      */
     getPostBySlug(slug: string): Promise<PostInterface>;
-    
-}
 
-export interface ListPostOptions {
-    perPage?: number,
-    page?: number,
-    tag?: string,
-    categoryId?: number,
 }

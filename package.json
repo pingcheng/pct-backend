@@ -5,7 +5,9 @@
   "main": "serverless.ts",
   "scripts": {
     "start": "sls offline start --stage dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --ext .js,.ts .",
+    "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
     "@middy/core": "^1.5.0",
@@ -24,6 +26,13 @@
     "@types/express": "^4.17.11",
     "@types/mysql": "^2.15.17",
     "@types/node": "^14.14.6",
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
+    "@typescript-eslint/parser": "^5.28.0",
+    "eslint": "^8.17.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.3",
+    "eslint-plugin-promise": "^6.0.0",
     "fork-ts-checker-webpack-plugin": "^6.0.0",
     "json-schema-to-ts": "^1.4.1",
     "serverless": "^3.19.0",
